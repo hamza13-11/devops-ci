@@ -17,9 +17,9 @@ jobs:
 
     steps: 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v3
       - name: checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
       - name: code linting
         uses: npm run lint 
       - name: build the code 
