@@ -3,10 +3,10 @@ name: CRUD CI
 on:
   push:
     branches:
-    - main
+      - main
   pull_request:
     branches:
-    - main
+      - main
 
 jobs: 
   build:
@@ -16,12 +16,19 @@ jobs:
         node_version: ['20.15.0']
 
     steps: 
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
       - name: Setup Node
         uses: actions/setup-node@v3
-      - name: checkout repository
-        uses: actions/checkout@v3
-      - name: code linting
-        uses: npm run lint 
-      - name: build the code 
-        uses: npm run build 
-    
+        with:
+          node-version: ${{ matrix.node_version }}
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Code linting
+        run: npm run lint
+
+      - name: Build the code 
+        run: npm run build
