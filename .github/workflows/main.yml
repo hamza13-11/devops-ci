@@ -1,0 +1,27 @@
+name: CRUD CI
+
+on:
+  push:
+    branches:
+    - main
+  pull_request:
+    branches:
+    - main
+
+jobs: 
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node_version: ['20.15.0']
+
+    steps: 
+      - name: Setup Node
+        uses: actions/setup-node@v4
+      - name: checkout repository
+        uses: actions/checkout@v4
+      - name: code linting
+        uses: npm run lint 
+      - name: build the code 
+        uses: npm run build 
+    
