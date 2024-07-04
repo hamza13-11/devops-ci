@@ -29,3 +29,12 @@ jobs:
 
       - name: Build the code 
         run: npm run build
+
+      - name: Zip the build artifacts
+        run: zip -r build.zip build
+
+      - name: Upload build artifact to GitHub
+        uses: actions/upload-artifact@v3
+        with:
+          name: build-artifact
+          path: build.zip
